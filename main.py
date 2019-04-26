@@ -20,27 +20,25 @@ class Stack:
     def size(self):  # Returns size of stack
         return len(self.items)
 
-
+# Returns BFS of a undirected, non-weighted graph
 def BFS(graph):
     # Traveled is a list that stores already visited nodes
     traveled = []
-    connected_nodes = []
+    # Queue
     queue = deque()
+    # Starts at vertex 1
     queue.append(1)
     traveled.append(1)
+    # Actual path
     bfs = []
+    # While queue is not empty
     while queue:  #
-        # for i in range(1,7):
-        i = queue.popleft()
-        bfs.append(i)
-        # traveled.append(i)
-        for m in graph[i]:
-            if m not in traveled:
-                connected_nodes.append(m)
-        for n in connected_nodes:
-            queue.append(n)
-            traveled.append(n)
-        connected_nodes.clear()
+        i = queue.popleft()  # Pops off queue
+        bfs.append(i)  # Adds to bfs path
+        for m in graph[i]:  # For each connected vertex
+            if m not in traveled:  # If it has not been visited
+                queue.append(m)  # Add to queue
+                traveled.append(m)  # Add to traveled
     print("BFS: ")
     print(bfs)
 
@@ -48,30 +46,26 @@ def BFS(graph):
 def DFS(graph):
     # Traveled is a list that stores already visited nodes
     traveled = []
-    connected_nodes = []
+    # Stack
     stack = Stack()
+    # Starts at vertex 1 - push to stack
     stack.push(1)
     traveled.append(1)
+    # Actual Path
     dfs = []
-    while not stack.isEmpty():  #
-        # for i in range(1,7):
-        i = stack.pop()
-        dfs.append(i)
-        # traveled.append(i)
-        for m in graph[i]:
-            if m not in traveled:
-                connected_nodes.append(m)
-        for n in connected_nodes:
-            stack.push(n)
-            traveled.append(n)
-        connected_nodes.clear()
+    # While Stack not empty
+    while not stack.isEmpty():  
+        i = stack.pop()  # pops off top of stack
+        dfs.append(i)  # Adds to path
+        for m in graph[i]:  # For each connected vertex
+            if m not in traveled:  # If it has not been visited
+                stack.push(m)  # Push to stack
+                traveled.append(m)  # add to traveled
     print("DFS: ")
     print(dfs)
 
 
 def main():
-    queue = deque()
-    stack = Stack()
 
     # Non-weighted undirected graph
     # V: [List of U's]
