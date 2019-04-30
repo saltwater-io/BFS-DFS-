@@ -1,3 +1,8 @@
+# Implementation of the BFS and DFS algorithm
+# For CSC: 413 Algorithms taught by Dr. Zhou
+#
+# Written by: Dakota McGuire
+
 from _collections import deque
 
 
@@ -26,7 +31,7 @@ def BFS(graph):
     traveled = []
     # Queue
     queue = deque()
-    # Starts at vertex 1
+    # Starts at vertex 1 - add to queue
     queue.append(1)
     traveled.append(1)
     # Actual path
@@ -54,7 +59,7 @@ def DFS(graph):
     # Actual Path
     dfs = []
     # While Stack not empty
-    while not stack.isEmpty():  
+    while not stack.isEmpty():
         i = stack.pop()  # pops off top of stack
         dfs.append(i)  # Adds to path
         for m in graph[i]:  # For each connected vertex
@@ -70,7 +75,7 @@ def main():
     # Non-weighted undirected graph
     # V: [List of U's]
     # V connected to U
-
+    # This is a representation of the sample graph on canvas.
     graph = {
         1: [2, 3],
         2: [1, 5, 4],
@@ -79,8 +84,9 @@ def main():
         5: [6, 4, 2, 3],
         6: [4, 5]
     }
-
+    print("")
     BFS(graph)
+    print("")
     DFS(graph)
 
 
